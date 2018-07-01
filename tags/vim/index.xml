@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on youkpter&#39;s blog</title>
+    <link>https://youkpter.github.io/tags/vim/</link>
+    <description>Recent content in Vim on youkpter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 02 Jun 2018 11:44:30 +0800</lastBuildDate>
+    
+	<atom:link href="https://youkpter.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>我的 Vim 实践之路</title>
+      <link>https://youkpter.github.io/post/vim/</link>
+      <pubDate>Sat, 02 Jun 2018 11:44:30 +0800</pubDate>
+      
+      <guid>https://youkpter.github.io/post/vim/</guid>
+      <description>接触 记得一开始是从《鸟哥的 Linux 私房菜》了解到 Vim 的。当初刚开始接触 Linux，正在 用那本书学习 Linux。虽然学习曲线陡，但现在习惯了 Vim 的模式之</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>推荐几篇关于字符编码、乱码的文章 - youkpter&#39;s blog</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://youkpter.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="youkpter" />
+  <meta name="description" content="日常开发中，多多少少会遇到乱码的问题。 为什么会乱码？ 如果解决乱码？ 字符集、字符编码、代码单元、代码点，分别是什么意思？ …… 在此推荐几篇之前看" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.40.1" />
+
+
+<link rel="canonical" href="https://youkpter.github.io/post/encoding/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="推荐几篇关于字符编码、乱码的文章" />
+<meta property="og:description" content="日常开发中，多多少少会遇到乱码的问题。 为什么会乱码？ 如果解决乱码？ 字符集、字符编码、代码单元、代码点，分别是什么意思？ …… 在此推荐几篇之前看" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://youkpter.github.io/post/encoding/" />
+
+
+
+<meta property="article:published_time" content="2018-07-01T11:10:40&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-07-01T11:10:40&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="推荐几篇关于字符编码、乱码的文章">
+<meta itemprop="description" content="日常开发中，多多少少会遇到乱码的问题。 为什么会乱码？ 如果解决乱码？ 字符集、字符编码、代码单元、代码点，分别是什么意思？ …… 在此推荐几篇之前看">
+
+
+<meta itemprop="datePublished" content="2018-07-01T11:10:40&#43;08:00" />
+<meta itemprop="dateModified" content="2018-07-01T11:10:40&#43;08:00" />
+<meta itemprop="wordCount" content="388">
+
+
+
+<meta itemprop="keywords" content="乱码," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="推荐几篇关于字符编码、乱码的文章"/>
+<meta name="twitter:description" content="日常开发中，多多少少会遇到乱码的问题。 为什么会乱码？ 如果解决乱码？ 字符集、字符编码、代码单元、代码点，分别是什么意思？ …… 在此推荐几篇之前看"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youkpter&#39;s blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/">
+          首页
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/post/">
+          归档
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/tags/">
+          标签
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/categories/">
+          分类
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      youkpter&#39;s blog
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/">首页</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">推荐几篇关于字符编码、乱码的文章</h1>
+      
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-01 </span>
+        
+        <span class="more-meta"> 约 388 字 </span>
+        <span class="more-meta"> 预计阅读 1 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>日常开发中，多多少少会遇到乱码的问题。</p>
+</div>
+<div class="paragraph">
+<p>为什么会乱码？</p>
+</div>
+<div class="paragraph">
+<p>如果解决乱码？</p>
+</div>
+<div class="paragraph">
+<p>字符集、字符编码、代码单元、代码点，分别是什么意思？</p>
+</div>
+<div class="paragraph">
+<p>……</p>
+</div>
+<div class="paragraph">
+<p>在此推荐几篇之前看过的文章，看完之后，应该就不会有上面的疑惑了，下次再遇到乱码问题
+，可以分析是哪个环节出了问题，从而对症下药。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__a_href_http_unicode_org_glossary_unicode_术语表_a"><a href="http://unicode.org/glossary/">Unicode 术语表</a></h3>
+<div class="paragraph">
+<p>字符集、字符编码、代码点等常见术语可以在这里找到解释。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__a_href_http_unicode_org_faq_utf_bom_html_utf_8_utf_16_utf_32_bom_a"><a href="http://unicode.org/faq/utf_bom.html">UTF-8, UTF-16, UTF-32 &amp; BOM</a></h3>
+<div class="paragraph">
+<p>介绍 Unicode 常见的编码方案和在 Windows 的记事本中会遇到的 BOM 头</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__a_href_http_www_joelonsoftware_com_articles_unicode_html_the_absolute_minimum_every_software_developer_absolutely_positively_must_know_about_unicode_and_character_sets_no_excuses_a"><a href="http://www.joelonsoftware.com/articles/Unicode.html">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</a></h3>
+<div class="paragraph">
+<p>Joel Spolsky 大神的“每个程序员都绝对必须知道的关于字符集和 Unicode 的那点儿事”，<a href="http://local.joelonsoftware.com/wiki/Talk:Chinese_(Simplified)">这里有中文翻译</a>，
+写得通俗易懂。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__a_href_http_kunststube_net_encoding_what_every_programmer_absolutely_positively_needs_to_know_about_encodings_and_character_sets_to_work_with_text_a"><a href="http://kunststube.net/encoding/">What Every Programmer Absolutely, Positively Needs To Know About Encodings And Character Sets To Work With Text</a></h3>
+<div class="paragraph">
+<p>标题类似于 Joel 大神的那篇，相比第一篇，此文更偏向于开发人员，讨论了乱码的细节，非常值得一读。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__a_href_http_kunststube_net_frontback_handling_unicode_front_to_back_in_a_web_app_a"><a href="http://kunststube.net/frontback/">Handling Unicode Front To Back In A Web App</a></h3>
+<div class="paragraph">
+<p>以 PHP 为例介绍 Web 开发中的编码场景</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__a_href_http_www_oracle_com_us_technologies_java_supplementary_142654_html_java_平台中的增补字符_a"><a href="http://www.oracle.com/us/technologies/java/supplementary-142654.html">Java 平台中的增补字符</a></h3>
+<div class="paragraph">
+<p>讲的是 Java 平台的增补字符，但也有提到 Unicode、代码点、编码方案等通用的知识点， <a href="https://www.oschina.net/question/12_12216">这里有中文翻译</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__a_href_https_www_ibm_com_developerworks_cn_java_j_lo_chinesecoding_深入分析_java_中的中文编码问题_a"><a href="https://www.ibm.com/developerworks/cn/java/j-lo-chinesecoding/">深入分析 Java 中的中文编码问题</a></h3>
+<div class="paragraph">
+<p>分析了 Java 字符编码的方方面面。</p>
+</div>
+</div>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/%E4%B9%B1%E7%A0%81/">乱码</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/vim/">
+            <span class="next-text nav-default">我的 Vim 实践之路</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://youkpter.github.io/index.xml" rel="noopener" type="application/rss+xml" class="iconfont icon-rss"
+    title="rss" target="_blank">
+  </a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span><span class="author">youkpter</span></span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+</body>
+</html>

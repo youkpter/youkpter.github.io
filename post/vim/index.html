@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>我的 Vim 实践之路 - youkpter&#39;s blog</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://youkpter.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="youkpter" />
+  <meta name="description" content="接触 记得一开始是从《鸟哥的 Linux 私房菜》了解到 Vim 的。当初刚开始接触 Linux，正在 用那本书学习 Linux。虽然学习曲线陡，但现在习惯了 Vim 的模式之" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.40.1" />
+
+
+<link rel="canonical" href="https://youkpter.github.io/post/vim/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="我的 Vim 实践之路" />
+<meta property="og:description" content="接触 记得一开始是从《鸟哥的 Linux 私房菜》了解到 Vim 的。当初刚开始接触 Linux，正在 用那本书学习 Linux。虽然学习曲线陡，但现在习惯了 Vim 的模式之" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://youkpter.github.io/post/vim/" />
+
+
+
+<meta property="article:published_time" content="2018-06-02T11:44:30&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-06-02T11:44:30&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="我的 Vim 实践之路">
+<meta itemprop="description" content="接触 记得一开始是从《鸟哥的 Linux 私房菜》了解到 Vim 的。当初刚开始接触 Linux，正在 用那本书学习 Linux。虽然学习曲线陡，但现在习惯了 Vim 的模式之">
+
+
+<meta itemprop="datePublished" content="2018-06-02T11:44:30&#43;08:00" />
+<meta itemprop="dateModified" content="2018-06-02T11:44:30&#43;08:00" />
+<meta itemprop="wordCount" content="1444">
+
+
+
+<meta itemprop="keywords" content="Vim," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="我的 Vim 实践之路"/>
+<meta name="twitter:description" content="接触 记得一开始是从《鸟哥的 Linux 私房菜》了解到 Vim 的。当初刚开始接触 Linux，正在 用那本书学习 Linux。虽然学习曲线陡，但现在习惯了 Vim 的模式之"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youkpter&#39;s blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/">
+          首页
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/post/">
+          归档
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/tags/">
+          标签
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/categories/">
+          分类
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      youkpter&#39;s blog
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/">首页</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">我的 Vim 实践之路</h1>
+      
+      <div class="post-meta">
+        <span class="post-time"> 2018-06-02 </span>
+        
+        <span class="more-meta"> 约 1444 字 </span>
+        <span class="more-meta"> 预计阅读 3 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <div class="sect1">
+<h2 id="_接触">接触</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>记得一开始是从《鸟哥的 Linux 私房菜》了解到 Vim 的。当初刚开始接触 Linux，正在
+用那本书学习 Linux。虽然学习曲线陡，但现在习惯了 Vim 的模式之后，已经越来越离不
+开了，成了电脑上的必装软件。各个软件装的第一个插件就是用于模拟 Vim 操作的插件。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_入门">入门</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>第一次接触 Vim 的时候，还是挺惊讶的，没想到 Linux 下面有这么好玩、高级的工具（
+虽然 Vim 并不是只存在与 Linux 下面，但我确实是接触了 Linux 才知道 Vim 的）。在
+网上了解了下，发现它的学习曲线还是挺陡的。但经不住类似于“掌握了 Vim/Emacs，可以
+一招走天下，不用再去学习其他编辑器了“、”在服务器上修改一个文件，只有 Vim 可选“
+的诱惑和”恐吓“，就入坑了。</p>
+</div>
+<div class="paragraph">
+<p>我是利用 Vim 自带的教材和用户手册来学习的，免去了寻找和选择教程的烦恼，还可以训
+练自己的英文文档阅读能力（从那以后，学习命令、软件，都习惯了先从自带的手册、帮
+助文档开始）。先过了几遍 vimtutor 教程，了解了 Vim 的几个模式和基本操作命令之后
+，就开始看用户手册了。一边看手册、一边实验，顺便做殿笔记，几个星期下来，除了几
+章暂时不感兴趣外，其他的都过了一遍，这个过程中，Vim 也用得越来越顺手了。接下来
+就是多练习，平时记点东西用 Vim，写 C 用 Vim，写 Python 用 Vim，甚至写 Java 也用
+过一段时间的 Vim。</p>
+</div>
+<div class="paragraph">
+<p>刚入门的时候，当然就少不了去折腾 Vim 配置和插件，比如：airline、Vundle、
+YouCompleteMe、gdbmgr 等等，看各种将 Vim 配置成 IDE 的教程，插件自带文档。那个
+时候Vim 配置文件总是改来改去，一下用这个插件、一下又用另一个替换掉。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_日常">日常</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>后来慢慢意识到有些场合使用 Vim 并不是最高效的，转向使用其他软件加 Vim 插件的方
+式。下面就聊聊日常使用场景：</p>
+</div>
+<div class="sect2">
+<h3 id="_开发">开发</h3>
+<div class="paragraph">
+<p>写代码的时候，特别是 Java 代码，使用 IDE 还是能方便很多的。IDE 可以做到自动补全
+、自动导包、错误提示……，不过很多时候需要借助鼠标进行操作，即使可以使用快捷键，
+但各个 IDE 的快捷键又不尽相同；而用 Vim 编写代码，双手可以做到在不离开主键盘的
+情况下快速地完成大部分操作。为了做到两者兼得，这个时候就可以借助 IDE 模拟 Vim
+操作的插件了。比如：Eclipse 的Vrapper、IDEA 的 IdeaVim，这样我们可以使用 Vim 的
+键盘映射方式进行编码，也就不用担心各个 IDE 不同的快捷键问题了。这也是很多人推荐
+学习 Vim/Emacs 的原因：只需要学一遍，到处都可以使用。类似于 Java 的“write once
+，run anywhere”，哈哈～</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_浏览网页">浏览网页</h3>
+<div class="paragraph">
+<p>上网也是一种频繁使用鼠标的场景。上网的时候，很多人还会养成一个把手一直放鼠标上
+的习惯。这个时候，我们也可以借助 Vim 插件大大减少使用鼠标的次数，从而避免这种坏
+习惯。比如 Chrome 有 Vimium，Firefox 有 Vimperator（不支持Firefox 57+，不过
+Vimium 有一个针对 Firefox 的移植版本）。当初从 Firefox 转向 Chrome 主要就是因为
+Vimium 。Vimium 在打开链接时，生成的按键更加合理，基本都在放置手指的附近；而
+Vimperator 生成的按键都是数字，每次都需要移动手指去按。上面这些插件学起来也不难
+，只需要了解几个常见的命令就可以满足大部分的需求，比如 Vimium 的
+<kbd>f</kbd>/<kbd>F</kbd>（打开链接）、<kbd>x</kbd>（关闭当前 tab 页）、<kbd>H</kbd>（后退）、
+<kbd>L</kbd>（前进），非常方便。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_vim_自身">Vim 自身</h3>
+<div class="paragraph">
+<p>Vim 自身并没有因此被抛弃，它本身是一个文本编辑器，所以文本编辑工作我还是交给它
+进行处理。比如日常中会遇到：将所有的字符全部转为大写或小写、查找替换、排序、去
+重、批量处理……，这个时候 Vim 能很方便地完成。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_最后">最后</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vim 学习曲线虽陡，但投入适当的时间学习一遍，就可以受用整个职业生涯，能够驾驭各
+个场景（比如上面说的编码、上网、文本处理），这种投入还是非常值得的。</p>
+</div>
+</div>
+</div>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/vim/">Vim</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/encoding/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">推荐几篇关于字符编码、乱码的文章</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://youkpter.github.io/index.xml" rel="noopener" type="application/rss+xml" class="iconfont icon-rss"
+    title="rss" target="_blank">
+  </a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span><span class="author">youkpter</span></span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+</body>
+</html>

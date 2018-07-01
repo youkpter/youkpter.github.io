@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>youkpter&#39;s blog</title>
+    <link>https://youkpter.github.io/</link>
+    <description>Recent content on youkpter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 01 Jul 2018 11:10:40 +0800</lastBuildDate>
+    
+        <atom:link href="https://youkpter.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>推荐几篇关于字符编码、乱码的文章</title>
+      <link>https://youkpter.github.io/post/encoding/</link>
+      <pubDate>Sun, 01 Jul 2018 11:10:40 +0800</pubDate>
+      
+      <guid>https://youkpter.github.io/post/encoding/</guid>
+      
+        <description>日常开发中，多多少少会遇到乱码的问题。 为什么会乱码？ 如果解决乱码？ 字符集、字符编码、代码单元、代码点，分别是什么意思？ …… 在此推荐几篇之前看</description>
+      
+    </item>
+    
+    <item>
+      <title>我的 Vim 实践之路</title>
+      <link>https://youkpter.github.io/post/vim/</link>
+      <pubDate>Sat, 02 Jun 2018 11:44:30 +0800</pubDate>
+      
+      <guid>https://youkpter.github.io/post/vim/</guid>
+      
+        <description>接触 记得一开始是从《鸟哥的 Linux 私房菜》了解到 Vim 的。当初刚开始接触 Linux，正在 用那本书学习 Linux。虽然学习曲线陡，但现在习惯了 Vim 的模式之</description>
+      
+    </item>
+    
+  </channel>
+</rss>

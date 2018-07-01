@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>乱码 on youkpter&#39;s blog</title>
+    <link>https://youkpter.github.io/tags/%E4%B9%B1%E7%A0%81/</link>
+    <description>Recent content in 乱码 on youkpter&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 01 Jul 2018 11:10:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://youkpter.github.io/tags/%E4%B9%B1%E7%A0%81/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>推荐几篇关于字符编码、乱码的文章</title>
+      <link>https://youkpter.github.io/post/encoding/</link>
+      <pubDate>Sun, 01 Jul 2018 11:10:40 +0800</pubDate>
+      
+      <guid>https://youkpter.github.io/post/encoding/</guid>
+      <description>日常开发中，多多少少会遇到乱码的问题。 为什么会乱码？ 如果解决乱码？ 字符集、字符编码、代码单元、代码点，分别是什么意思？ …… 在此推荐几篇之前看</description>
+    </item>
+    
+  </channel>
+</rss>
