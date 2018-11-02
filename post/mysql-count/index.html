@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MySQL count() 解惑 - youkpter&#39;s blog</title>
+  <link rel="alternate" hreflang="zh-cn" href="https://youkpter.github.io" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="youkpter" />
+  <meta name="description" content="之前有了解到 MyISAM 会单独保存表的记录数，导致 count() 在 MyISAM 和 InnoDB 下的表现不同，最近花时间专门了解了下 count()。 常见用法 count() 常见的用法有如下三种： count(exp) 用于" />
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.40.1" />
+
+
+<link rel="canonical" href="https://youkpter.github.io/post/mysql-count/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="MySQL count() 解惑" />
+<meta property="og:description" content="之前有了解到 MyISAM 会单独保存表的记录数，导致 count() 在 MyISAM 和 InnoDB 下的表现不同，最近花时间专门了解了下 count()。 常见用法 count() 常见的用法有如下三种： count(exp) 用于" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://youkpter.github.io/post/mysql-count/" />
+
+
+
+<meta property="article:published_time" content="2018-11-02T23:34:21&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-11-02T23:34:21&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="MySQL count() 解惑">
+<meta itemprop="description" content="之前有了解到 MyISAM 会单独保存表的记录数，导致 count() 在 MyISAM 和 InnoDB 下的表现不同，最近花时间专门了解了下 count()。 常见用法 count() 常见的用法有如下三种： count(exp) 用于">
+
+
+<meta itemprop="datePublished" content="2018-11-02T23:34:21&#43;08:00" />
+<meta itemprop="dateModified" content="2018-11-02T23:34:21&#43;08:00" />
+<meta itemprop="wordCount" content="1184">
+
+
+
+<meta itemprop="keywords" content="MySQL," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL count() 解惑"/>
+<meta name="twitter:description" content="之前有了解到 MyISAM 会单独保存表的记录数，导致 count() 在 MyISAM 和 InnoDB 下的表现不同，最近花时间专门了解了下 count()。 常见用法 count() 常见的用法有如下三种： count(exp) 用于"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">youkpter&#39;s blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/">
+          首页
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/post/">
+          归档
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/tags/">
+          标签
+        </a>
+      </li><li class="mobile-menu-item">
+        <a href="https://youkpter.github.io/categories/">
+          分类
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      youkpter&#39;s blog
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/">首页</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://youkpter.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">MySQL count() 解惑</h1>
+      
+      <div class="post-meta">
+        <span class="post-time"> 2018-11-02 </span>
+        
+        <span class="more-meta"> 约 1184 字 </span>
+        <span class="more-meta"> 预计阅读 3 分钟 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>之前有了解到 MyISAM 会单独保存表的记录数，导致 count() 在 MyISAM 和 InnoDB 下的表现不同，最近花时间专门了解了下 count()。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_常见用法">常见用法</h3>
+<div class="paragraph">
+<p>count() 常见的用法有如下三种：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>count(exp)</code> 用于返回符合 where 条件且 exp 不为 NULL 的记录数；</p>
+</li>
+<li>
+<p><code>count(*)</code> 则是返回符合 where 条件的记录数；</p>
+</li>
+<li>
+<p><code>count(1)</code> 的效果和第二种写法一样，都是返回符合 where 条件的记录数。其中 1 可以换成其他数值，结果都一样。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>第一种就不用多说，它的目的和其他两种有点不一样，是判断不为 NULL 的记录数。第二和第三种就让人犯难了，效果一样，那应该用哪
+一种呢？其实对 MySQL 而言，后两者的性能是一样的。<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_myisam">MyISAM</h3>
+<div class="paragraph">
+<p>对于 MyISAM 而言，每个表的行数有专门保存起来，所以：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>select count(*) from foobar</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>会被优化成直接获取保存的行数。explain 的结果也证明了这点：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-sql" data-lang="sql">mysql&gt; show create table myisam_count\G
+*************************** 1. row ***************************
+       Table: myisam_count
+Create Table: CREATE TABLE `myisam_count` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)
+
+mysql&gt; explain select count(*) from myisam_count\G
+*************************** 1. row ***************************
+           id: 1
+  select_type: SIMPLE
+        table: NULL
+   partitions: NULL
+         type: NULL
+possible_keys: NULL
+          key: NULL
+      key_len: NULL
+          ref: NULL
+         rows: NULL
+     filtered: NULL
+        Extra: Select tables optimized away
+1 row in set, 1 warning (0.00 sec)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>关于 <code>Select tables optimized away</code> ，MySQL 文档是这么解释的：</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The optimizer determined 1) that at most one row should be returned, and 2) that to produce this row, a deterministic
+set of rows must be read. When the rows to be read can be read during the optimization phase (for example, by reading
+index rows), there is no need to read any tables during query execution.</p>
+</div>
+<div class="paragraph">
+<p>The first condition is fulfilled when the query is implicitly grouped (contains an aggregate function but no GROUP BY
+clause). The second condition is fulfilled when one row lookup is performed per index used. The number of
+indexes read determines the number of rows to read.</p>
+</div>
+<div class="paragraph">
+<p>For storage engines that maintain an exact row count per table (such as MyISAM, but not InnoDB), this Extra value can
+occur for COUNT(*) queries for which the WHERE clause is missing or always true and there is no GROUP BY clause. (This
+is an instance of an implicitly grouped query where the storage engine influences whether a deterministic number of rows
+can be read.)</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; <a href="https://dev.mysql.com/doc/refman/8.0/en/explain-output.html#explain-join-types">MySQL 8.0 Reference Manual</a>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_innodb">InnoDB</h3>
+<div class="paragraph">
+<p>对于 InnoDB 而言，因为其支持事务，同一时刻，不同的事务看到的数据可能不一样，所以 InnoDB 并没有保存表的行数。而是通过扫描
+索引来计算 <code>count(*)</code> 的结果，其值表示的是当前事务所能看到的行数。</p>
+</div>
+<div class="paragraph">
+<p>不过其采用的扫描方式几经更改：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">5.7.2 之前</dt>
+<dd>
+<p>扫描二级索引，对每个二级索引记录调用一个 handler 来统计行数；</p>
+</dd>
+<dt class="hdlist1">5.7.2</dt>
+<dd>
+<p>实现了一个 handler::records，只需调用一次，直接在存储引擎层计算行数，然后将结果返回
+给优化器。与此同时，其扫描方式改成了强制扫描主键，即使使用 force index 也无效，相应的工作日志为 <a href="https://dev.mysql.com/worklog/task/?id=6742">WL#6742</a>。</p>
+<div class="paragraph">
+<p>关于更改扫描方式的原因，工作日志中有提到：
+之前使用二级索引扫描，当表被并发修改时，二级索引可能会存在未提交的记录，这时需要回查聚集索引判断记录是否对当前事务可见，
+会多一次读取操作，所以索性直接扫描主键索引。</p>
+</div>
+<div class="paragraph">
+<p>这种做法在大部分情况下可以带来性能提升，但有时可能会出现性能退化，有人为此报了 <a href="https://bugs.mysql.com/bug.php?id=80580">bug</a>。</p>
+</div>
+</dd>
+<dt class="hdlist1">5.7.18</dt>
+<dd>
+<p>该版本撤销了 5.7.2 的修改；改回通过遍历最小的二级索引统计行数，如果没有二级索引才扫描聚簇索引。</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+因为不同 MySQL 版本对 InnoDB count(*) 的实现不一样，所以其 explain 结果可能不同。有些版本的 explain 结果和 MyISAM
+一样，都是 <code>Select tables optimized away</code> ，但它并不表示 InnoDB 保存了表的行数，而是指这个结果可以在优化阶段获得。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_参考资料">参考资料</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://dev.mysql.com/doc/refman/5.7/en/group-by-functions.html#function_count">MySQL 5.7 Reference Manual</a></p>
+</li>
+<li>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count"> MySQL 8.0 Reference Manual</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/5179969/what-is-better-in-mysql-count-or-count1">What is better in MySQL count(*) or count(1)?</a></p>
+</li>
+<li>
+<p><a href="http://mysql.taobao.org/monthly/2016/06/10/">MySQL · 引擎特性 · InnoDB COUNT(*) 优化 (?)</a> 阿里云 RDS- 数据库内核组</p>
+</li>
+<li>
+<p><a href="https://dev.mysql.com/worklog/task/?id=6742">WL#6742: Improve InnoDB SELECT COUNT(*) performance by using handler::records</a></p>
+</li>
+<li>
+<p><a href="https://dev.mysql.com/doc/relnotes/mysql/5.7/en/news-5-7-2.html">Changes in MySQL 5.7.2</a></p>
+</li>
+<li>
+<p><a href="https://dev.mysql.com/doc/relnotes/mysql/5.7/en/news-5-7-18.html">Changes in MySQL 5.7.18</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. 对于 MyISAM，官方文档说 <code>count(1)</code> 只有当表的第一列定义为 NOT NULL 时，才会像 <code>count(*)</code> 一样，直接返回保存的行数，实际测试发现并没有这个限制。
+</div>
+</div>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/mysql/">MySQL</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/encoding/">
+            <span class="next-text nav-default">推荐几篇关于字符编码、乱码的文章</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+
+  
+
+  
+
+  
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="https://youkpter.github.io/index.xml" rel="noopener" type="application/rss+xml" class="iconfont icon-rss"
+    title="rss" target="_blank">
+  </a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span><span class="author">youkpter</span></span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+</body>
+</html>

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on youkpter&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 01 Jul 2018 11:10:40 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 02 Nov 2018 23:34:21 +0800</lastBuildDate>
     
 	<atom:link href="https://youkpter.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MySQL count() 解惑</title>
+      <link>https://youkpter.github.io/post/mysql-count/</link>
+      <pubDate>Fri, 02 Nov 2018 23:34:21 +0800</pubDate>
+      
+      <guid>https://youkpter.github.io/post/mysql-count/</guid>
+      <description>之前有了解到 MyISAM 会单独保存表的记录数，导致 count() 在 MyISAM 和 InnoDB 下的表现不同，最近花时间专门了解了下 count()。 常见用法 count() 常见的用法有如下三种： count(exp) 用于</description>
+    </item>
     
     <item>
       <title>推荐几篇关于字符编码、乱码的文章</title>
